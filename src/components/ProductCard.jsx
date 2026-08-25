@@ -1,7 +1,7 @@
 import SmartImage from './art/SmartImage';
 import Badge from './Badge';
 import { formatPrice } from '../utils/format';
-import { productImagePath } from '../config/images';
+import { productImageCandidates } from '../config/images';
 import './ProductCard.css';
 
 export default function ProductCard({ product, mood, variant, onOpen }) {
@@ -9,7 +9,7 @@ export default function ProductCard({ product, mood, variant, onOpen }) {
     <button className={`p-card p-card--${variant}`} onClick={() => onOpen(product)}>
       <span className="p-card__media">
         <SmartImage
-          src={productImagePath(product.id)}
+          sources={productImageCandidates(product)}
           art={product.art}
           mood={mood}
           alt={product.name}

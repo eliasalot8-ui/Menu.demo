@@ -9,18 +9,29 @@ como reemplazo temporal (`src/components/art/Illustration.jsx`).
 ## Cómo funciona el reemplazo automático
 
 No hace falta tocar ningún componente, animación ni layout para pasar a
-fotografía real. El sistema ya está preparado:
+fotografía real. El sistema resuelve cada imagen en tres niveles, de más
+a menos específico:
 
-1. Cada producto y cada imagen del hero tiene un **nombre de archivo fijo**
-   definido en `src/config/images.js` (tabla completa más abajo).
-2. `<SmartImage>` (`src/components/art/SmartImage.jsx`) intenta cargar esa
-   foto desde `/public/images/`. Si el archivo existe, se muestra
-   automáticamente. Si todavía no fue subido (o falla la carga), cae sola
-   a la ilustración de línea actual — **nunca se ve un ícono de imagen
-   rota**.
-3. Para agregar una foto real: exportarla con el nombre **exacto** de la
-   tabla y guardarla en `/public/images/`. Listo — no requiere rebuild de
-   código, ningún componente cambia.
+1. **Foto específica del producto** — nombre fijo por producto, tabla
+   completa más abajo.
+2. **Foto compartida de su categoría** — 2 o 3 fotos por categoría que
+   alcanzan para que toda la demo se vea con fotografía real desde el
+   día uno. Ver **`ASSETS_PRIORITY.md`** para la lista corta (20 fotos)
+   que conviene conseguir primero.
+3. **Ilustración editorial de línea** — siempre disponible, nunca falla.
+
+`<SmartImage>` (`src/components/art/SmartImage.jsx`) prueba cada nivel
+en ese orden y se queda con el primero que cargue de verdad. Si un
+archivo todavía no fue subido (o falla la carga), pasa solo al
+siguiente nivel — **nunca se ve un ícono de imagen rota**, ni con la
+foto específica ni con la de categoría.
+
+Para agregar una foto real: exportarla con el nombre **exacto** de la
+tabla (específica) o de `ASSETS_PRIORITY.md` (de categoría) y guardarla
+en `/public/images/`. Listo — no requiere rebuild de código, ningún
+componente cambia. Este archivo (`ASSETS_NEEDED.md`) es la referencia
+técnica completa de los 43 nombres específicos; `ASSETS_PRIORITY.md` es
+la guía de qué conseguir primero.
 
 Si en algún momento se quiere renombrar un archivo, el único lugar que hay
 que tocar es `src/config/images.js` (mapa `PRODUCT_IMAGES` / `HERO_IMAGES`).
@@ -115,7 +126,10 @@ Todas van en `/public/images/<archivo>`. Formato sugerido: 1200×1200 a
 | Campari orange | `bar-campari-orange.jpg` |
 | Cerveza tirada | `bar-cerveza-tirada.jpg` |
 
-**Total: 43 fotos de producto + 3 del hero = 46 archivos.**
+**Total del catálogo completo: 43 fotos de producto + 3 del hero = 46
+archivos.** Ninguna de las 43 específicas es necesaria para lanzar la
+demo — con las 20 fotos de `ASSETS_PRIORITY.md` (3 hero + 17 de
+categoría) alcanza. Estas 43 son la mejora incremental de PRIORIDAD 2.
 
 ## Estilo a mantener en todas las fotos
 

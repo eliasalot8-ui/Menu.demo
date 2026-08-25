@@ -27,7 +27,7 @@ Listo para deploy en Vercel (framework preset: Vite).
 | Productos, precios, categorías, extras | `src/data/menu.js` |
 | Logo / isotipo | `public/brand/*.svg` |
 | Colores de marca | `src/styles/tokens.css` y `src/components/art/tones.js` |
-| Fotografía real (reemplaza las ilustraciones automáticamente) | subir a `public/images/` con el nombre exacto listado en `src/config/images.js` — ver `ASSETS_NEEDED.md` |
+| Fotografía real (reemplaza las ilustraciones automáticamente, en 3 niveles: producto → categoría → ilustración) | subir a `public/images/` con el nombre exacto listado en `src/config/images.js` — empezar por `ASSETS_PRIORITY.md` (20 fotos), detalle completo en `ASSETS_NEEDED.md` (43 específicas) |
 
 ## Estructura
 

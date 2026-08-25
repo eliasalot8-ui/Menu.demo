@@ -2,42 +2,51 @@ import { useEffect, useRef, useState } from 'react';
 import Illustration from './Illustration';
 import './SmartImage.css';
 
-// Muestra la ilustración de línea como base y, en segundo plano,
-// intenta precargar la fotografía real desde /public/images/. Solo si
-// esa precarga termina en éxito se hace un crossfade hacia la foto.
-// Así nunca se llega a pintar un <img> roto: si el archivo no existe
-// (o falla), la ilustración simplemente se queda puesta.
+// Prueba, en segundo plano y en orden de prioridad, una lista de
+// posibles fotografías (ej.: foto específica del producto → foto
+// compartida de su categoría) y hace crossfade hacia la primera que
+// cargue de verdad. Si ninguna existe todavía, la ilustración de
+// línea se queda puesta. Nunca se llega a montar un <img> con src
+// inválido, así que no hay riesgo de ícono de imagen rota ni con
+// conexiones lentas.
 //
-// `eager`: precarga inmediata (hero, modal). Si no, se dispara recién
+// `sources`: array de rutas candidatas, en orden de prioridad.
+// `src`: atajo para una única ruta (se normaliza a [src]).
+// `eager`: precarga inmediata (hero, modal). Si no, recién se prueba
 // cuando el elemento se acerca al viewport (lazy loading real).
-export default function SmartImage({ src, art, mood, alt = '', className = '', eager = false }) {
-  const [loaded, setLoaded] = useState(false);
+export default function SmartImage({ src, sources, art, mood, alt = '', className = '', eager = false }) {
+  const candidates = sources ?? (src ? [src] : []);
+  const candidatesKey = candidates.join('|');
+  const [resolvedSrc, setResolvedSrc] = useState(null);
   const wrapRef = useRef(null);
 
   useEffect(() => {
-    setLoaded(false);
-  }, [src]);
+    setResolvedSrc(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [candidatesKey]);
 
   useEffect(() => {
-    if (!src) return undefined;
+    if (!candidatesKey) return undefined;
     let cancelled = false;
     let observer;
 
-    function probe() {
+    function tryLoad(i) {
+      if (cancelled || i >= candidates.length) return;
       const img = new Image();
       img.onload = () => {
-        if (!cancelled) setLoaded(true);
+        if (!cancelled) setResolvedSrc(candidates[i]);
       };
-      img.src = src;
+      img.onerror = () => tryLoad(i + 1);
+      img.src = candidates[i];
     }
 
     if (eager) {
-      probe();
+      tryLoad(0);
     } else if (wrapRef.current) {
       observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting) {
-            probe();
+            tryLoad(0);
             observer.disconnect();
           }
         },
@@ -50,14 +59,15 @@ export default function SmartImage({ src, art, mood, alt = '', className = '', e
       cancelled = true;
       if (observer) observer.disconnect();
     };
-  }, [src, eager]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [candidatesKey, eager]);
 
-  const showPhoto = Boolean(src) && loaded;
+  const showPhoto = Boolean(resolvedSrc);
 
   return (
     <span className={`smart-image-wrap ${className}`} ref={wrapRef}>
       <Illustration type={art} mood={mood} className={`smart-image-art ${showPhoto ? 'is-hidden' : ''}`} />
-      {showPhoto && <img src={src} alt={alt} className="smart-image" decoding="async" />}
+      {showPhoto && <img src={resolvedSrc} alt={alt} className="smart-image" decoding="async" />}
     </span>
   );
 }
