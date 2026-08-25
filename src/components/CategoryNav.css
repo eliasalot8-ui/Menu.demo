@@ -1,0 +1,49 @@
+.cat-nav {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 39;
+  background: rgba(248, 246, 241, 0.9);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid rgba(21, 21, 21, 0.08);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.cat-nav--dark {
+  background: rgba(21, 21, 21, 0.82);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.cat-nav__rail {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.7rem var(--gutter);
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cat-nav__item {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  padding: 0.5em 1em;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--carbon);
+  opacity: 0.55;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.cat-nav--dark .cat-nav__item { color: var(--cream); }
+
+.cat-nav__item.is-active {
+  opacity: 1;
+  background: var(--carbon);
+  color: var(--white);
+}
+
+.cat-nav--dark .cat-nav__item.is-active {
+  background: var(--terracotta);
+  color: var(--white);
+}

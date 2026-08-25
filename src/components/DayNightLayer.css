@@ -1,0 +1,37 @@
+.day-night {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--dn-bg);
+  transition: background-color 0.4s linear;
+}
+
+.day-night__wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% -10%, var(--dn-accent) 0%, transparent 55%);
+  opacity: 0.14;
+}
+
+.day-night__specks {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.6s ease;
+}
+
+.day-night__speck {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 0 6px 1px rgba(242, 233, 218, 0.6);
+  animation: speck-twinkle 3.6s ease-in-out infinite;
+}
+
+@keyframes speck-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-night__speck { animation: none; opacity: 0.5; }
+}

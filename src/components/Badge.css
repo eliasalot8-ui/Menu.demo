@@ -1,0 +1,20 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.32em 0.6em;
+  border-radius: 999px;
+  background: var(--carbon);
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.badge--recomendado { background: var(--terracotta); color: var(--white); }
+.badge--nuevo { background: var(--olive); color: var(--white); }
+.badge--veggie { background: var(--white); color: var(--olive); border: 1px solid var(--olive); }
+.badge--sin-tacc { background: var(--white); color: var(--coffee); border: 1px solid var(--coffee); }
+.badge--mas-pedido { background: var(--carbon); color: var(--cream); }
+.badge--picante { background: var(--terracotta); color: var(--white); }

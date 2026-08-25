@@ -1,0 +1,159 @@
+.p-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.45s var(--ease-editorial), box-shadow 0.45s var(--ease-editorial);
+  width: 100%;
+}
+
+.p-card:hover { transform: translateY(-4px); }
+.p-card:active { transform: translateY(-1px) scale(0.99); }
+
+.p-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.p-card__media .illustration {
+  transition: transform 0.7s var(--ease-editorial);
+}
+.p-card:hover .p-card__media .illustration { transform: scale(1.06); }
+
+.p-card__badges {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  max-width: calc(100% - 1.2rem);
+}
+
+.p-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.p-card__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.p-card__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.p-card__price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  white-space: nowrap;
+}
+
+.p-card__desc {
+  font-size: 0.82rem;
+  opacity: 0.68;
+  line-height: 1.4;
+}
+
+/* ---- carousel: tarjeta compacta vertical para scroll horizontal ---- */
+.p-card--carousel {
+  width: 190px;
+  flex: 0 0 auto;
+}
+.p-card--carousel .p-card__media { aspect-ratio: 4 / 5; }
+
+/* ---- overlay-grid: texto superpuesto sobre la imagen ---- */
+.p-card--overlay-grid { aspect-ratio: 3 / 4; }
+.p-card--overlay-grid .p-card__media { position: absolute; inset: 0; aspect-ratio: auto; }
+.p-card--overlay-grid .p-card__body {
+  position: relative;
+  margin-top: auto;
+  background: linear-gradient(to top, rgba(21,21,21,0.82) 10%, rgba(21,21,21,0.0) 100%);
+  color: var(--white);
+  padding-top: 2.4rem;
+}
+.p-card--overlay-grid .p-card__price { color: var(--cream); }
+.p-card--overlay-grid .p-card__desc { opacity: 0.8; }
+
+/* ---- editorial: imagen + info amplia, usado en brunch ---- */
+.p-card--editorial {
+  flex-direction: row;
+  align-items: stretch;
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.1);
+  border-radius: 0;
+  padding-block: 1rem;
+}
+.p-card--editorial:hover { transform: none; }
+.p-card--editorial .p-card__media {
+  width: 118px;
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-s);
+  align-self: center;
+}
+.p-card--editorial .p-card__body { padding: 0 0 0 1.1rem; justify-content: center; }
+.p-card--editorial .p-card__name { font-size: 1.3rem; }
+
+/* ---- feature: cards grandes cinematográficas, usado en cocina ---- */
+.p-card--feature { border-radius: var(--radius-l); }
+.p-card--feature .p-card__media { aspect-ratio: 5 / 4; }
+.p-card--feature .p-card__name { font-size: 1.5rem; }
+.p-card--feature .p-card__body { padding: 1.2rem 1.3rem 1.4rem; }
+
+/* ---- soft-grid: postres, cálido y redondeado ---- */
+.p-card--soft-grid {
+  background: var(--cream);
+  border-radius: var(--radius-l);
+}
+.p-card--soft-grid .p-card__media { aspect-ratio: 1 / 1; border-radius: var(--radius-l) var(--radius-l) 0 0; }
+.p-card--soft-grid .p-card__name { font-size: 1.2rem; }
+
+/* ---- minimal-list: filas simples, sin alcohol ---- */
+.p-card--minimal-list {
+  flex-direction: row;
+  align-items: center;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.08);
+  padding-block: 0.85rem;
+}
+.p-card--minimal-list:hover { transform: none; }
+.p-card--minimal-list .p-card__media { width: 52px; flex: 0 0 auto; border-radius: 999px; aspect-ratio: 1/1; }
+.p-card--minimal-list .p-card__body { flex-direction: row; align-items: baseline; justify-content: space-between; flex: 1; padding: 0 0 0 1rem; }
+.p-card--minimal-list .p-card__top { width: 100%; }
+.p-card--minimal-list .p-card__desc { display: none; }
+.p-card--minimal-list .p-card__name { font-size: 1.02rem; font-weight: 600; font-family: var(--font-body); }
+
+/* ---- night-editorial: bar, oscuro con halo ---- */
+.p-card--night-editorial {
+  background: var(--carbon-soft);
+  color: var(--cream);
+}
+.p-card--night-editorial .p-card__price { color: var(--terracotta); }
+.p-card--night-editorial .p-card__desc { opacity: 0.6; }
+.p-card--night-editorial .p-card__media { position: relative; }
+.p-card--night-editorial .p-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 40px 6px rgba(196, 93, 60, 0.35);
+  pointer-events: none;
+}

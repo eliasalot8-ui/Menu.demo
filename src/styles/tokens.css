@@ -1,0 +1,38 @@
+:root {
+  --carbon: #151515;
+  --carbon-soft: #232120;
+  --cream: #f2e9da;
+  --white: #f8f6f1;
+  --terracotta: #c45d3c;
+  --olive: #747552;
+  --coffee: #6a4433;
+
+  --ink: var(--carbon);
+  --paper: var(--white);
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+
+  --container: 1180px;
+  --gutter: clamp(1.1rem, 4vw, 2.6rem);
+
+  --radius-s: 10px;
+  --radius-m: 18px;
+  --radius-l: 28px;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.16, 0.84, 0.44, 1);
+
+  --shadow-card: 0 18px 40px -22px rgba(21, 21, 21, 0.35);
+  --shadow-modal: 0 -12px 60px -20px rgba(0, 0, 0, 0.5);
+
+  --nav-h: 60px;
+
+  color-scheme: light;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --nav-h: 72px;
+  }
+}

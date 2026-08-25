@@ -1,0 +1,97 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 1.6rem;
+  padding-bottom: 3.4rem;
+}
+
+.hero__visuals {
+  position: relative;
+  height: 46vh;
+  min-height: 280px;
+  flex: 0 0 auto;
+}
+
+.hero__frame {
+  position: absolute;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  will-change: transform;
+}
+
+.hero__frame--a { width: 54%; height: 88%; top: 0; left: 2%; }
+.hero__frame--b { width: 40%; height: 62%; top: 4%; right: 2%; }
+.hero__frame--c { width: 30%; height: 40%; bottom: 0; right: 16%; display: none; }
+
+.hero__copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+.hero__eyebrow { letter-spacing: 0.3em; }
+
+.hero__title {
+  font-size: clamp(2.8rem, 11vw, 5.6rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35em;
+}
+.hero__title span { display: inline-block; }
+
+.hero__sub {
+  font-size: 1.02rem;
+  max-width: 34ch;
+  opacity: 0.75;
+}
+
+.hero__cta { margin-top: 0.6rem; }
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 26px;
+  height: 42px;
+  border: 1.5px solid var(--carbon);
+  border-radius: 999px;
+  opacity: 0.5;
+}
+.hero__scroll-dot {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--carbon);
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+@keyframes scroll-dot {
+  0% { top: 6px; opacity: 1; }
+  70% { top: 22px; opacity: 0.2; }
+  71% { opacity: 0; }
+  72% { top: 6px; }
+  100% { top: 6px; opacity: 1; }
+}
+
+@media (min-width: 720px) {
+  .hero { padding-top: 2rem; }
+  .hero__visuals { height: 62vh; min-height: 420px; }
+  .hero__frame--c { display: block; }
+  .hero__copy { margin-top: 2.2rem; }
+  .hero__title { max-width: 20ch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-dot { animation: none; }
+}

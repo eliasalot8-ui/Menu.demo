@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 110" fill="none" role="img" aria-label="Nómada — Café, cocina y bar">
+  <g>
+    <circle cx="24" cy="40" r="15" fill="#C45D3C"/>
+    <path d="M24 25a15 15 0 0 1 0 30 11 11 0 0 1 0-30z" fill="#151515"/>
+  </g>
+  <text x="54" y="52" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-size="46" letter-spacing="2" fill="#151515">NÓMADA</text>
+  <text x="56" y="80" font-family="'Manrope', 'Helvetica Neue', sans-serif" font-size="13" letter-spacing="5" fill="#6A4433">CAFÉ · COCINA · BAR</text>
+</svg>

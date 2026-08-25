@@ -1,0 +1,38 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.95em 1.7em;
+  border-radius: 999px;
+  transition: transform 0.35s var(--ease-soft), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.btn--primary {
+  background: var(--carbon);
+  color: var(--white);
+}
+.btn--primary:hover { background: var(--terracotta); }
+
+.btn--ghost {
+  background: transparent;
+  color: currentColor;
+  border: 1px solid currentColor;
+}
+
+.btn--light {
+  background: var(--cream);
+  color: var(--carbon);
+}
+.btn--light:hover { background: var(--white); }
+
+.btn--sm {
+  padding: 0.6em 1.1em;
+  font-size: 0.72rem;
+}
