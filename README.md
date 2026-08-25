@@ -27,7 +27,7 @@ Listo para deploy en Vercel (framework preset: Vite).
 | Productos, precios, categorías, extras | `src/data/menu.js` |
 | Logo / isotipo | `public/brand/*.svg` |
 | Colores de marca | `src/styles/tokens.css` y `src/components/art/tones.js` |
-| Fotografía real (reemplaza las ilustraciones) | ver `ASSETS_NEEDED.md` |
+| Fotografía real (reemplaza las ilustraciones automáticamente) | subir a `public/images/` con el nombre exacto listado en `src/config/images.js` — ver `ASSETS_NEEDED.md` |
 
 ## Estructura
 
@@ -36,7 +36,7 @@ src/
   components/     UI reutilizable (cards, modal, carrito, nav, ilustración)
   sections/       Intro, Hero, MenuSection, Footer
   data/menu.js    fuente única de productos y categorías
-  config/         negocio y ordering flag
+  config/         negocio, ordering flag y registro de fotografías (images.js)
   context/        estado del carrito
   hooks/          scrollspy, progreso de scroll (día→noche)
   utils/          formato de precios y mensaje de WhatsApp

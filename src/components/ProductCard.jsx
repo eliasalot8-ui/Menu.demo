@@ -1,13 +1,19 @@
-import Illustration from './art/Illustration';
+import SmartImage from './art/SmartImage';
 import Badge from './Badge';
 import { formatPrice } from '../utils/format';
+import { productImagePath } from '../config/images';
 import './ProductCard.css';
 
 export default function ProductCard({ product, mood, variant, onOpen }) {
   return (
     <button className={`p-card p-card--${variant}`} onClick={() => onOpen(product)}>
       <span className="p-card__media">
-        <Illustration type={product.art} mood={mood} />
+        <SmartImage
+          src={productImagePath(product.id)}
+          art={product.art}
+          mood={mood}
+          alt={product.name}
+        />
         {product.badges?.length > 0 && (
           <span className="p-card__badges">
             {product.badges.map((b) => (

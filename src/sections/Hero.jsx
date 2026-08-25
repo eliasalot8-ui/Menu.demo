@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Illustration from '../components/art/Illustration';
+import SmartImage from '../components/art/SmartImage';
 import Button from '../components/Button';
 import { business } from '../config/business';
+import { heroImagePath } from '../config/images';
 import './Hero.css';
 
 export default function Hero() {
@@ -53,13 +54,30 @@ export default function Hero() {
     <section className="hero" ref={rootRef} id="top">
       <div className="hero__visuals">
         <div className="hero__frame hero__frame--a" ref={(el) => (layersRef.current[0] = el)}>
-          <Illustration type="milk-cup" mood="dawn" />
+          <SmartImage
+            src={heroImagePath(0)}
+            art="milk-cup"
+            mood="dawn"
+            alt="Café con leche recién servido en NÓMADA"
+            eager
+          />
         </div>
         <div className="hero__frame hero__frame--b" ref={(el) => (layersRef.current[1] = el)}>
-          <Illustration type="board" mood="midday-warm" />
+          <SmartImage
+            src={heroImagePath(1)}
+            art="board"
+            mood="midday-warm"
+            alt="Mesa compartida de mediodía en NÓMADA"
+            eager
+          />
         </div>
         <div className="hero__frame hero__frame--c" ref={(el) => (layersRef.current[2] = el)}>
-          <Illustration type="cocktail-glass" mood="night" />
+          <SmartImage
+            src={heroImagePath(2)}
+            art="cocktail-glass"
+            mood="night"
+            alt="Trago de bar por la noche en NÓMADA"
+          />
         </div>
       </div>
 

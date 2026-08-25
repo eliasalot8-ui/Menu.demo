@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import Illustration from './art/Illustration';
+import SmartImage from './art/SmartImage';
 import Badge from './Badge';
 import { formatPrice } from '../utils/format';
 import { getExtrasFor, CATEGORIES } from '../data/menu';
 import { useCart } from '../context/CartContext';
+import { productImagePath } from '../config/images';
 import './ProductModal.css';
 
 export default function ProductModal({ product, onClose }) {
@@ -57,7 +58,13 @@ export default function ProductModal({ product, onClose }) {
           ✕
         </button>
         <div className="modal__media">
-          <Illustration type={product.art} mood={category?.mood} />
+          <SmartImage
+            src={productImagePath(product.id)}
+            art={product.art}
+            mood={category?.mood}
+            alt={product.name}
+            eager
+          />
         </div>
         <div className="modal__content">
           {product.badges?.length > 0 && (

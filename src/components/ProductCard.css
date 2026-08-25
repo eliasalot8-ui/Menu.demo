@@ -21,10 +21,12 @@
   overflow: hidden;
 }
 
-.p-card__media .illustration {
+.p-card__media .illustration,
+.p-card__media .smart-image {
   transition: transform 0.7s var(--ease-editorial);
 }
-.p-card:hover .p-card__media .illustration { transform: scale(1.06); }
+.p-card:hover .p-card__media .illustration,
+.p-card:hover .p-card__media .smart-image { transform: scale(1.06); }
 
 .p-card__badges {
   position: absolute;

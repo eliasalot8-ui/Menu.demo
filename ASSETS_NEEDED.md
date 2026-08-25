@@ -1,78 +1,153 @@
 # Fotografía pendiente
 
-Este entorno de desarrollo no tuvo salida a internet hacia bancos de
-imágenes (Unsplash / Pexels quedaron bloqueados por la política de red del
-sandbox), así que **no se pudieron descargar fotografías reales**. Para no
-dejar imágenes rotas, todo el proyecto usa un sistema de ilustración
-editorial en línea fina y propia (`src/components/art/Illustration.jsx`),
-con paleta de marca y una textura de grano sutil. Es intencional y
-consistente, pero el objetivo final del producto (punto 9 del brief) es
-fotografía gastronómica real.
+El entorno de desarrollo no tuvo salida a internet hacia bancos de imágenes
+(Unsplash / Pexels quedaron bloqueados por la política de red del sandbox),
+así que **no se pudieron descargar fotografías reales**. El sitio está
+100% terminado y funcional con un sistema de ilustración editorial propio
+como reemplazo temporal (`src/components/art/Illustration.jsx`).
 
-## Cómo reemplazar una ilustración por una foto
+## Cómo funciona el reemplazo automático
 
-1. Conseguí la foto (Unsplash/Pexels, licencia libre de uso comercial) y
-   guardala en `/public/images/<nombre>.jpg` (o `.webp`).
-2. En `src/components/ProductCard.jsx` (o donde corresponda), cambiá
-   `<Illustration type={product.art} mood={mood} />` por
-   `<img src="/images/<nombre>.jpg" alt={product.name} loading="lazy" />`.
-3. Repetí para el `ProductModal` y para las tres imágenes del `Hero`
-   (`src/sections/Hero.jsx`).
+No hace falta tocar ningún componente, animación ni layout para pasar a
+fotografía real. El sistema ya está preparado:
 
-No hace falta tocar `src/data/menu.js`: el campo `art` puede convivir con
-un campo nuevo `image` si se quiere migrar producto por producto.
+1. Cada producto y cada imagen del hero tiene un **nombre de archivo fijo**
+   definido en `src/config/images.js` (tabla completa más abajo).
+2. `<SmartImage>` (`src/components/art/SmartImage.jsx`) intenta cargar esa
+   foto desde `/public/images/`. Si el archivo existe, se muestra
+   automáticamente. Si todavía no fue subido (o falla la carga), cae sola
+   a la ilustración de línea actual — **nunca se ve un ícono de imagen
+   rota**.
+3. Para agregar una foto real: exportarla con el nombre **exacto** de la
+   tabla y guardarla en `/public/images/`. Listo — no requiere rebuild de
+   código, ningún componente cambia.
 
-## Lista de fotografías recomendadas
+Si en algún momento se quiere renombrar un archivo, el único lugar que hay
+que tocar es `src/config/images.js` (mapa `PRODUCT_IMAGES` / `HERO_IMAGES`).
 
-Formato: `archivo` — categoría — proporción — descripción — resolución.
+## 1. Imágenes del Hero (portada)
 
-### Café
-- `cafe-espresso.jpg` — Café — 1:1 — espresso en taza blanca, mesa de madera oscura, luz cálida lateral — 1200×1200
-- `cafe-latte.jpg` — Café — 1:1 — latte con arte en taza de cerámica, primer plano — 1200×1200
-- `cafe-filtrado.jpg` — Café — 4:5 — café filtrado en V60, vapor sutil — 1200×1500
-- `cafe-iced.jpg` — Café — 4:5 — iced latte con hielo, luz de mañana — 1200×1500
+| Archivo | Proporción | Resolución | Descripción |
+| --- | --- | --- | --- |
+| `hero-01.jpg` | 4:5 | 1600×2000 | Café con leche o latte recién servido, luz de mañana, mesa de madera clara |
+| `hero-02.jpg` | 1:1 | 1600×1600 | Mesa compartida de mediodía — tabla o plato central, composición editorial |
+| `hero-03.jpg` | 3:4 | 1400×1867 | Trago de bar (gin tonic o Aperol) en ambiente nocturno, reflejos cálidos |
 
-### Pastelería
-- `pasteleria-medialunas.jpg` — Pastelería — 3:4 — medialunas de manteca apiladas, mimbre o madera clara — 1200×1600
-- `pasteleria-croissant.jpg` — Pastelería — 3:4 — croissant entero, corte lateral mostrando hojaldre — 1200×1600
-- `pasteleria-rollcanela.jpg` — Pastelería — 3:4 — roll de canela con glaseado — 1200×1600
-- `pasteleria-tostado.jpg` — Pastelería — 3:4 — tostado de jamón y queso cortado al medio — 1200×1600
+Ubicación: `/public/images/hero-01.jpg`, `/public/images/hero-02.jpg`, `/public/images/hero-03.jpg`
 
-### Brunch
-- `brunch-toston-palta.jpg` — Brunch — 4:5 — tostón de palta con huevo poché, mesa clara, editorial — 1600×2000
-- `brunch-huevos.jpg` — Brunch — 4:5 — huevos revueltos con panceta y papas rústicas — 1600×2000
-- `brunch-completo.jpg` — Brunch — 16:10 — mesa servida con brunch completo, vista cenital — 2000×1250
-- `brunch-yogur.jpg` — Brunch — 4:5 — yogur con granola y frutos rojos — 1600×2000
+## 2. Imágenes por producto
 
-### Cocina
-- `cocina-smash.jpg` — Cocina — 5:4 — smash burger doble, cheddar derretido, fondo oscuro — 2000×1600
-- `cocina-milanesa.jpg` — Cocina — 5:4 — milanesa napolitana con papas — 2000×1600
-- `cocina-pasta.jpg` — Cocina — 5:4 — pasta fresca con salsa, mesa rústica — 2000×1600
-- `cocina-ensalada.jpg` — Cocina — 5:4 — ensalada con pollo y palta, luz natural — 2000×1600
+Todas van en `/public/images/<archivo>`. Formato sugerido: 1200×1200 a
+1600×2000 según proporción, JPG o WEBP, buena compresión (~150–300 KB).
 
-### Para compartir
-- `compartir-papas.jpg` — Para compartir — 4:5 — papas con cheddar y panceta — 1200×1500
-- `compartir-tabla.jpg` — Para compartir — 4:5 — tabla de quesos y fiambres — 1200×1500
+### Café — cuadradas (1:1), luz cálida, taza protagonista
+| Producto | Archivo |
+| --- | --- |
+| Espresso | `cafe-espresso.jpg` |
+| Doble espresso | `cafe-doble-espresso.jpg` |
+| Cortado | `cafe-cortado.jpg` |
+| Café con leche | `cafe-con-leche.jpg` |
+| Flat white | `cafe-flat-white.jpg` |
+| Cappuccino | `cafe-cappuccino.jpg` |
+| Latte | `cafe-latte.jpg` |
+| Iced latte | `cafe-iced-latte.jpg` |
 
-### Postres
-- `postres-chocotorta.jpg` — Postres — 1:1 — chocotorta en vaso o plato, fondo claro — 1200×1200
-- `postres-cheesecake.jpg` — Postres — 1:1 — porción de cheesecake — 1200×1200
-- `postres-brownie.jpg` — Postres — 1:1 — brownie con helado derritiéndose — 1200×1200
+### Pastelería — verticales (3:4), horno propio, mimbre o madera clara
+| Producto | Archivo |
+| --- | --- |
+| Medialunas de manteca | `pasteleria-medialunas.jpg` |
+| Croissant | `pasteleria-croissant.jpg` |
+| Croissant de jamón y queso | `pasteleria-croissant-jyq.jpg` |
+| Roll de canela | `pasteleria-roll-canela.jpg` |
+| Tostado de jamón y queso | `pasteleria-tostado-jyq.jpg` |
+| Porción de budín | `pasteleria-budin.jpg` |
 
-### Bar
-- `bar-gintonic.jpg` — Bar — 4:5 — gin tonic con botánicos, luz nocturna, reflejos — 1200×1500
-- `bar-aperol.jpg` — Bar — 4:5 — Aperol spritz, hora del atardecer — 1200×1500
-- `bar-cerveza.jpg` — Bar — 4:5 — cerveza tirada con espuma, contraluz — 1200×1500
+### Brunch — verticales (4:5) salvo el combo, editorial y luminoso
+| Producto | Archivo |
+| --- | --- |
+| Tostón de palta | `brunch-toston-palta.jpg` |
+| Huevos Nómada | `brunch-huevos-nomada.jpg` |
+| Brunch completo | `brunch-completo.jpg` (16:10, vista cenital de mesa) |
+| Tostón caprese | `brunch-toston-caprese.jpg` |
+| Yogur & granola | `brunch-yogur-granola.jpg` |
 
-### Hero (portada)
-- `hero-01.jpg` — Hero — 4:5 — composición editorial de café + medialunas, mesa de madera — 1600×2000
-- `hero-02.jpg` — Hero — 1:1 — tabla o mesa servida con variedad de platos — 1600×1600
-- `hero-03.jpg` — Hero — 3:4 — cóctel nocturno, ambientación de bar — 1400×1867
+### Cocina — 5:4, platos grandes, fondo oscuro o mesa rústica
+| Producto | Archivo |
+| --- | --- |
+| Smash Nómada | `cocina-smash-nomada.jpg` |
+| Milanesa napolitana | `cocina-milanesa-napolitana.jpg` |
+| Sándwich de bondiola | `cocina-sandwich-bondiola.jpg` |
+| Pasta del día | `cocina-pasta-del-dia.jpg` |
+| Ensalada Nómada | `cocina-ensalada-nomada.jpg` |
 
-## Estilo a mantener
+### Para compartir — verticales (4:5)
+| Producto | Archivo |
+| --- | --- |
+| Papas Nómada | `compartir-papas-nomada.jpg` |
+| Bastones de muzzarella | `compartir-muzzarella-bastones.jpg` |
+| Hummus & pan | `compartir-hummus-pan.jpg` |
+| Tabla Nómada | `compartir-tabla-nomada.jpg` |
+
+### Postres — cuadradas (1:1), fondos claros, cremosidad a la vista
+| Producto | Archivo |
+| --- | --- |
+| Chocotorta | `postres-chocotorta.jpg` |
+| Cheesecake | `postres-cheesecake.jpg` |
+| Brownie con helado | `postres-brownie-helado.jpg` |
+| Panqueque con dulce de leche | `postres-panqueque-dulce-leche.jpg` |
+
+### Sin alcohol — verticales (4:5), frescas, luz natural
+| Producto | Archivo |
+| --- | --- |
+| Limonada | `sinalcohol-limonada.jpg` |
+| Limonada de frutos rojos | `sinalcohol-limonada-frutos-rojos.jpg` |
+| Jugo de naranja | `sinalcohol-jugo-naranja.jpg` |
+| Agua | `sinalcohol-agua.jpg` |
+| Gaseosa | `sinalcohol-gaseosa.jpg` |
+
+### Bar — verticales (4:5), nocturnas, reflejos y contraluz
+| Producto | Archivo |
+| --- | --- |
+| Fernet con coca | `bar-fernet-coca.jpg` |
+| Gin tonic | `bar-gin-tonic.jpg` |
+| Aperol spritz | `bar-aperol-spritz.jpg` |
+| Vermut & soda | `bar-vermut-soda.jpg` |
+| Campari orange | `bar-campari-orange.jpg` |
+| Cerveza tirada | `bar-cerveza-tirada.jpg` |
+
+**Total: 43 fotos de producto + 3 del hero = 46 archivos.**
+
+## Estilo a mantener en todas las fotos
 
 - Iluminación cálida y natural, nunca flash directo.
 - Fondos neutros: madera, piedra o superficies mate en tonos crema/carbón.
 - Primeros planos con profundidad de campo (fondo desenfocado).
-- Coherencia entre todas las fotos: mismo tratamiento de color, sin mezclar
-  estilos (evitar una foto muy saturada al lado de una muy pastel).
+- Mismo tratamiento de color en todas — evitar mezclar una foto muy
+  saturada al lado de una muy pastel.
+- Bar y sin-alcohol pueden tener temperatura de color más fría/nocturna
+  que café y pastelería (acompaña la transición día→noche del sitio).
+
+## Mejoras recomendadas una vez subidas las fotos reales
+
+1. **Object-position por producto**: si alguna foto queda mal encuadrada
+   dentro del recorte cuadrado/vertical, agregar un `focalPoint` opcional
+   por producto en `images.js` y pasarlo como `object-position` en
+   `SmartImage`.
+2. **Formatos modernos**: exportar también `.webp` (o `.avif`) de cada
+   archivo y sumar un `<picture>` con fallback a `.jpg` dentro de
+   `SmartImage` para bajar peso sin tocar el resto del sitio.
+3. **Imágenes responsive**: generar 2 tamaños por foto (ej. 800px y
+   1600px de ancho) y usar `srcSet`/`sizes` en `SmartImage` para no bajar
+   la versión grande en mobile.
+4. **Retirar el grano SVG** de `Illustration.jsx` deja de ser necesario
+   una vez que casi todo el catálogo tenga foto — pero como es fallback
+   automático, podés dejarlo indefinidamente sin costo.
+5. **Ajustar el bloom nocturno de `.p-card--night-editorial`** (glow
+   interior color terracota) puede quedar demasiado marcado sobre una
+   foto de trago muy oscura; conviene bajar su opacidad ~15% al ver la
+   primera tanda de fotos del bar.
+6. **Revisar contraste de texto** sobre `overlay-grid` (pastelería) y
+   `night-editorial` (bar) con las fotos reales puestas — el gradiente
+   está calibrado para las ilustraciones planas y puede necesitar un
+   pelín más de opacidad si las fotos son muy claras u oscuras en esa
+   zona.
