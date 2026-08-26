@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ProductCard from '../components/ProductCard';
 import { getProductsByCategory } from '../data/menu';
+import { TONES } from '../components/art/tones';
 import './MenuSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +22,8 @@ export default function MenuSection({ category, onOpenProduct }) {
   const products = getProductsByCategory(category.id);
   const ref = useRef(null);
   const isDark = category.mood === 'night';
+  const isAmbient = category.id === 'sin-alcohol';
+  const ambientTone = TONES[category.mood];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,8 +64,14 @@ export default function MenuSection({ category, onOpenProduct }) {
     <section
       id={category.id}
       ref={ref}
-      className={`menu-section menu-section--${category.layout} ${isDark ? 'menu-section--dark' : ''}`}
+      className={`menu-section menu-section--${category.layout} ${isDark ? 'menu-section--dark' : ''} ${isAmbient ? 'menu-section--ambient' : ''}`}
     >
+      {isAmbient && (
+        <div className="menu-section__ambient" aria-hidden="true">
+          <span className="menu-section__ambient-blob menu-section__ambient-blob--a" style={{ background: ambientTone.blobA }} />
+          <span className="menu-section__ambient-blob menu-section__ambient-blob--b" style={{ background: ambientTone.blobB }} />
+        </div>
+      )}
       <div className="container">
         <header className="menu-section__heading">
           <span className="eyebrow">{category.kicker}</span>

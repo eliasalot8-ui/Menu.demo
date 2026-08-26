@@ -3,6 +3,8 @@ import { CartProvider } from './context/CartContext';
 import { useActiveSection } from './hooks/useActiveSection';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { CATEGORIES } from './data/menu';
+import { skipIntroOnRevisit } from './config/business';
+import { hasSeenIntro, markIntroSeen } from './utils/introSession';
 import DayNightLayer from './components/DayNightLayer';
 import Navbar from './components/Navbar';
 import CategoryNav from './components/CategoryNav';
@@ -17,7 +19,7 @@ import Footer from './sections/Footer';
 const CATEGORY_IDS = CATEGORIES.map((c) => c.id);
 
 export default function App() {
-  const [introDone, setIntroDone] = useState(false);
+  const [introDone, setIntroDone] = useState(() => skipIntroOnRevisit && hasSeenIntro());
   const [activeProduct, setActiveProduct] = useState(null);
   const menuRef = useRef(null);
 
@@ -25,9 +27,14 @@ export default function App() {
   const progress = useScrollProgress(menuRef);
   const isNight = activeId === 'bar' || progress > 0.82;
 
+  function handleIntroDone() {
+    markIntroSeen();
+    setIntroDone(true);
+  }
+
   return (
     <CartProvider>
-      {!introDone && <Intro onDone={() => setIntroDone(true)} />}
+      {!introDone && <Intro onDone={handleIntroDone} />}
       <DayNightLayer progress={progress} />
       <Navbar dark={isNight} />
       <CategoryNav activeId={activeId} dark={isNight} />

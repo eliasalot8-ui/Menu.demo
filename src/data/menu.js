@@ -239,9 +239,14 @@ export const PRODUCTS = [
   { id: 'gaseosa', category: 'sin-alcohol', name: 'Gaseosa', price: 4500, art: 'soda' },
 
   // ---------- BAR ----------
-  { id: 'fernet-coca', category: 'bar', name: 'Fernet con coca', price: 8500, art: 'cocktail-glass', badges: ['mas-pedido'] },
-  { id: 'gin-tonic', category: 'bar', name: 'Gin tonic', price: 9500, art: 'cocktail-glass', badges: ['recomendado'] },
-  { id: 'aperol-spritz', category: 'bar', name: 'Aperol spritz', price: 9500, art: 'cocktail-glass', badges: ['recomendado'] },
+  // `featured: true` deja preparados los tragos candidatos a un
+  // tratamiento visual destacado más adelante (con foto real puesta).
+  // ProductCard ya expone la clase `p-card--featured`, hoy sin estilos
+  // propios: activarlo es agregar reglas CSS para esa clase, no requiere
+  // tocar datos ni componentes de nuevo.
+  { id: 'fernet-coca', category: 'bar', name: 'Fernet con coca', price: 8500, art: 'cocktail-glass', badges: ['mas-pedido'], featured: true },
+  { id: 'gin-tonic', category: 'bar', name: 'Gin tonic', price: 9500, art: 'cocktail-glass', badges: ['recomendado'], featured: true },
+  { id: 'aperol-spritz', category: 'bar', name: 'Aperol spritz', price: 9500, art: 'cocktail-glass', badges: ['recomendado'], featured: true },
   { id: 'vermut-soda', category: 'bar', name: 'Vermut & soda', price: 8500, art: 'cocktail-glass' },
   { id: 'campari-orange', category: 'bar', name: 'Campari orange', price: 8900, art: 'cocktail-glass' },
   { id: 'cerveza-tirada', category: 'bar', name: 'Cerveza tirada', price: 6500, art: 'beer', badges: ['mas-pedido'] },

@@ -13,6 +13,29 @@
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
+/* Pista muy sutil de que la barra sigue hacia la derecha. Se apaga
+   sola cuando ya se llegó al final del scroll (.cat-nav--end). */
+.cat-nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  width: 32px;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(248, 246, 241, 0), rgba(248, 246, 241, 0.92) 70%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cat-nav--dark::after {
+  background: linear-gradient(to right, rgba(21, 21, 21, 0), rgba(21, 21, 21, 0.88) 70%);
+}
+
+.cat-nav--end::after {
+  opacity: 0;
+}
+
 .cat-nav__rail {
   display: flex;
   gap: 0.4rem;

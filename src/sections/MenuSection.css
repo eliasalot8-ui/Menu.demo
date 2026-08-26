@@ -8,6 +8,58 @@
   color: var(--cream);
 }
 
+/* Capa ambiental muy sutil para "Sin alcohol": funciona como
+   transición de profundidad entre Postres y Bar sin cambiar la
+   estructura de lista de la sección. */
+.menu-section--ambient {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-section--ambient > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-section__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.menu-section__ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.3;
+  animation: menu-ambient-drift 16s ease-in-out infinite alternate;
+}
+
+.menu-section__ambient-blob--a {
+  width: 280px;
+  height: 280px;
+  top: -80px;
+  left: 6%;
+}
+
+.menu-section__ambient-blob--b {
+  width: 240px;
+  height: 240px;
+  bottom: -60px;
+  right: 4%;
+  animation-delay: -8s;
+}
+
+@keyframes menu-ambient-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(16px, -12px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-section__ambient-blob { animation: none; }
+}
+
 .menu-section__heading {
   display: flex;
   flex-direction: column;

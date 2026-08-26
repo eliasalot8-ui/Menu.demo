@@ -159,3 +159,8 @@
   box-shadow: inset 0 0 40px 6px rgba(196, 93, 60, 0.35);
   pointer-events: none;
 }
+
+/* .p-card--featured: preparado para productos con `featured: true`
+   (ver src/data/menu.js). Sin estilos propios todavía a propósito —
+   se activa el destacado de un trago sumando reglas acá cuando haya
+   fotos reales, sin tocar componentes ni datos de nuevo. */

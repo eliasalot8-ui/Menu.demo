@@ -18,6 +18,12 @@ export const business = {
 // se desactivan por completo y NÓMADA funciona como carta digital pura.
 export const orderingEnabled = true;
 
+// Pensado para uso por QR: si es true, la intro completa solo se ve la
+// primera vez en cada sesión del navegador (sessionStorage); las
+// aperturas siguientes entran directo al menú. Poner en false para que
+// la intro completa se vea siempre, en cada apertura.
+export const skipIntroOnRevisit = true;
+
 export const currency = {
   locale: 'es-AR',
   code: 'ARS',

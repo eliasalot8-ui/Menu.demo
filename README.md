@@ -24,6 +24,7 @@ Listo para deploy en Vercel (framework preset: Vite).
 | --- | --- |
 | Nombre, WhatsApp, Instagram, horarios, dirección | `src/config/business.js` |
 | Activar/desactivar pedidos por WhatsApp | `orderingEnabled` en `src/config/business.js` |
+| Mostrar la intro completa siempre (en vez de solo la primera vez por sesión) | `skipIntroOnRevisit` en `src/config/business.js` |
 | Productos, precios, categorías, extras | `src/data/menu.js` |
 | Logo / isotipo | `public/brand/*.svg` |
 | Colores de marca | `src/styles/tokens.css` y `src/components/art/tones.js` |

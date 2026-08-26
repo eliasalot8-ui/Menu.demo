@@ -6,7 +6,10 @@ import './ProductCard.css';
 
 export default function ProductCard({ product, mood, variant, onOpen }) {
   return (
-    <button className={`p-card p-card--${variant}`} onClick={() => onOpen(product)}>
+    <button
+      className={`p-card p-card--${variant} ${product.featured ? 'p-card--featured' : ''}`}
+      onClick={() => onOpen(product)}
+    >
       <span className="p-card__media">
         <SmartImage
           sources={productImageCandidates(product)}
