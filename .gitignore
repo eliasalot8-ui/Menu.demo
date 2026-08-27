@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Standalone bundle assembled for the Claude Artifact preview
+artifact-build
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
