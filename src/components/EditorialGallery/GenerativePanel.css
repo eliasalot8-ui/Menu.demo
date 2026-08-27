@@ -1,0 +1,112 @@
+.gpanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bone-dim);
+}
+
+.gpanel__wash {
+  position: absolute;
+  inset: 0;
+}
+
+.gpanel__wash--warm {
+  background: linear-gradient(135deg, #e9dfc9 0%, #d8cdb8 45%, #b8ab8f 100%);
+}
+
+.gpanel__wash--stone {
+  background: linear-gradient(160deg, #c8c2b6 0%, #9c9488 40%, #8d867a 70%, #6f6a60 100%);
+}
+
+.gpanel__wash--oak {
+  background: linear-gradient(120deg, #8a6440 0%, #a9784f 45%, #6b4a30 100%);
+}
+
+.gpanel__wash--carbon {
+  background: linear-gradient(150deg, #2a2723 0%, #141210 60%, #0c0b09 100%);
+}
+
+.gpanel__wash--bone {
+  background: radial-gradient(circle at 40% 35%, #f6f2e9 0%, #e8e1d3 55%, #d8cdb8 100%);
+}
+
+.gpanel__beam {
+  position: absolute;
+  top: -20%;
+  left: 10%;
+  width: 46%;
+  height: 160%;
+  background: linear-gradient(100deg, rgba(255, 250, 235, 0.55), rgba(255, 250, 235, 0) 70%);
+  transform: rotate(12deg);
+  filter: blur(2px);
+}
+
+.gpanel__lines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(20, 18, 16, 0.08) 0px,
+    rgba(20, 18, 16, 0.08) 1px,
+    transparent 1px,
+    transparent 120px
+  );
+}
+
+.gpanel__arc {
+  position: absolute;
+  width: 130%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid rgba(20, 18, 16, 0.16);
+  left: -30%;
+  bottom: -55%;
+}
+
+.gpanel__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(
+      88deg,
+      rgba(0, 0, 0, 0.12) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 6px,
+      rgba(255, 255, 255, 0.06) 8px,
+      rgba(0, 0, 0, 0) 11px
+    ),
+    repeating-linear-gradient(89deg, rgba(0, 0, 0, 0.06) 0px, transparent 3px, transparent 40px);
+  mix-blend-mode: multiply;
+}
+
+.gpanel__grid {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(242, 237, 228, 0.09) 0px,
+      rgba(242, 237, 228, 0.09) 1px,
+      transparent 1px,
+      transparent 15%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(242, 237, 228, 0.09) 0px,
+      rgba(242, 237, 228, 0.09) 1px,
+      transparent 1px,
+      transparent 25%
+    );
+}
+
+.gpanel__orb {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #cdbfa1 45%, #8d867a 100%);
+  box-shadow: 0 40px 80px -20px rgba(20, 18, 16, 0.35);
+}
