@@ -1,0 +1,53 @@
+.story {
+  position: relative;
+  background: var(--carbon);
+}
+
+.story__stage {
+  position: relative;
+  height: 100svh;
+  overflow: clip;
+  color: var(--bone);
+}
+
+.story__bg {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.story__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 18, 16, 0.35) 0%, rgba(20, 18, 16, 0.15) 40%, rgba(20, 18, 16, 0.55) 100%);
+}
+
+.story__words {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story__word {
+  position: absolute;
+  font-size: clamp(70px, 15vw, 260px);
+  color: var(--bone);
+  letter-spacing: -0.01em;
+}
+
+.story__eyebrow {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--stone-light);
+}
+
+@media (max-width: 860px) {
+  .story__word {
+    font-size: clamp(48px, 18vw, 90px);
+  }
+}

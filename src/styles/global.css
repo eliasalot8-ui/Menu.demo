@@ -1,0 +1,200 @@
+/* ============================================================
+   NOMA — Design tokens & global foundation
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --bone: #f2ede4;
+  --bone-dim: #e8e1d3;
+  --carbon: #141210;
+  --carbon-soft: #1c1a17;
+  --stone: #8d867a;
+  --stone-light: #b8b0a2;
+  --sand: #d8cdb8;
+  --oak: #a9784f;
+  --oak-dark: #6b4a30;
+  --accent: #6b6157;
+
+  /* Surfaces */
+  --bg: var(--bone);
+  --fg: var(--carbon);
+
+  /* Type */
+  --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Rhythm */
+  --edge: clamp(20px, 4vw, 64px);
+  --header-h: 88px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: auto;
+}
+
+html.has-lenis {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+body.cursor-active,
+body.cursor-active a,
+body.cursor-active button {
+  cursor: none;
+}
+
+::selection {
+  background: var(--carbon);
+  color: var(--bone);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+#root {
+  position: relative;
+  width: 100%;
+}
+
+.noma-app {
+  position: relative;
+  background: var(--bg);
+}
+
+/* ---------- Typography scale ---------- */
+
+.type-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.type-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--stone);
+}
+
+.mono-index {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--stone);
+}
+
+/* ---------- Layout helpers ---------- */
+
+.section {
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  padding-left: var(--edge);
+  padding-right: var(--edge);
+}
+
+.hairline {
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.14;
+}
+
+.overflow-clip {
+  overflow: clip;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.split-line {
+  overflow: clip;
+  display: block;
+}
+
+.split-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Focus visibility (a11y) ---------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--carbon);
+  outline-offset: 4px;
+}
