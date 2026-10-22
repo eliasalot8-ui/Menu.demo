@@ -68,7 +68,11 @@ img, svg { display: block; max-width: 100%; }
 }
 .skip:focus { top: 1rem; }
 
-.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.wrap {
+  width: 100%; max-width: var(--max); margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
 
 /* Tipografía ------------------------------------------------------------- */
 .eyebrow {
@@ -139,7 +143,7 @@ h3 {
 
 /* Header ----------------------------------------------------------------- */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
   background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: saturate(1.4) blur(8px);
   border-bottom: 1px solid transparent;
